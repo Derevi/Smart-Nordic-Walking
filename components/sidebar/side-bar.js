@@ -19,6 +19,7 @@ import Typography from '@mui/material/Typography';
 
 const drawerWidth = 240;
 const topBarHeight=80;
+
 function SideBar(props) {
   const { window, children,Component, pageProps, currentUser, } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
