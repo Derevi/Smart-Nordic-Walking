@@ -16,9 +16,25 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const drawerWidth = 240;
 const topBarHeight=80;
+const theme = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#112235',
+    },
+    secondary: {
+      main: '#f50057',
+    },
+    background: {
+      default: '#792d2d',
+      paper: '#4ab94e',
+    },
+  },
+});
 
 function SideBar(props) {
   const { window, children,Component, pageProps, currentUser, } = props;
@@ -49,6 +65,7 @@ function SideBar(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
+    <ThemeProvider theme={theme}>
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar
@@ -113,6 +130,7 @@ function SideBar(props) {
         {children}
       </Box>
     </Box>
+    </ThemeProvider>
   );
 }
 
