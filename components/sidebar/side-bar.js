@@ -44,8 +44,13 @@ function SideBar(props) {
     setMobileOpen(!mobileOpen);
   };
 
+  // if currentUser then show all options
+  // else if currentUser not connected prompt login/sighnup
+
   const drawer = (
     <div>
+      MY LOGO
+      {currentUser.login}
       <Toolbar />
       <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
@@ -86,7 +91,7 @@ function SideBar(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+            Nordic Walking
           </Typography>
         </Toolbar>
       </AppBar>

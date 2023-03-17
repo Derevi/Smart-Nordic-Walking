@@ -3,10 +3,16 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import { Box, Typography } from '@mui/material'
+import { useEffect } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home(props) {
+  const { window, children,Component, pageProps, currentUser, } = props;
+  useEffect(()=>{
+    document.cookie = JSON.stringify(currentUser)
+  })
+  
   return (
     <>
       <Head>
@@ -18,6 +24,7 @@ export default function Home() {
 
 
       <Typography paragraph>
+      {currentUser.login}
           Xorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
           enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus

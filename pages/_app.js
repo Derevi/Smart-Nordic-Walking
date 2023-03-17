@@ -10,7 +10,7 @@ export default function  App({ Component, pageProps, currentUser }){
   return (<div>
       {/* <Header  currentUser={currentUser} /> */}
 
-      <SideBar>
+      <SideBar currentUser={currentUser} {...pageProps}>
         <Component currentUser={currentUser} {...pageProps}/>
       </SideBar>
       {/* <ContentBox >
