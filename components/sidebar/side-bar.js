@@ -17,7 +17,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-
+import BluetoothSearchingIcon from '@mui/icons-material/BluetoothSearching';
+import { Menu, MenuItem, Tooltip } from '@mui/material';
+import ComputerIcon from '@mui/icons-material/Computer';
+// import Tooltip from '@mui/material/Tooltip';
+import NordicWalkingIcon from '@mui/icons-material/NordicWalking';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ThreeSixtyIcon from '@mui/icons-material/ThreeSixty';
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 const drawerWidth = 240;
 const topBarHeight=80;
 const theme = createTheme({
@@ -27,11 +34,11 @@ const theme = createTheme({
       main: '#112235',
     },
     secondary: {
-      main: '#f50057',
+      main: '#0b5394',
     },
     background: {
-      default: '#792d2d',
-      paper: '#4ab94e',
+      default: '#ffffff',
+      paper: '#172e48',
     },
   },
 });
@@ -44,25 +51,76 @@ function SideBar(props) {
     setMobileOpen(!mobileOpen);
   };
 
+
+  const connectLeftSideBluetooth = async () =>{
+    await navigator.bluetooth.requestDevice({
+      filters:[{
+        services:['cf69d05e-dd02-11ed-afa1-0242ac120002' ]
+      } ]
+    })
+  }
+  const connectRightSideBluetooth = async () =>{
+    await navigator.bluetooth.requestDevice({
+      filters:[{
+        services:['cf69d05e-dd02-11ed-afa1-0242ac120002' ]
+      } ]
+    })
+  }
+
   // if currentUser then show all options
   // else if currentUser not connected prompt login/sighnup
 
   const drawer = (
     <div>
-      MY LOGO
-      {currentUser.login}
+      {/* MY LOGO
+      {currentUser.login} */}
+      
       <Toolbar />
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+      <ListItem key="DashBoard" >
+      <Tooltip title="Page not visible until both sides of nordic walking pole devices are connected via bluetooth">
+            <ListItemButton>
+              <NordicWalkingIcon color="disabled" />
+              <ListItemText sx={{ pl: 1 }} primary="DashBoard" color="disabled"  />
+            </ListItemButton>
+            </Tooltip>
+          </ListItem>
+          <ListItem key="Heart" >
+          <Tooltip title="Page not visible until both sides of nordic walking pole devices are connected via bluetooth">
+
+            <ListItemButton>
+              <FavoriteBorderIcon color="disabled" />
+              <ListItemText sx={{ pl: 1 }} primary="Heart" color="disabled" />
+            </ListItemButton>
+            </Tooltip>
+          </ListItem>
+          <ListItem key="Position" >
+          <Tooltip title="Page not visible until both sides of nordic walking pole devices are connected via bluetooth">
+
+            <ListItemButton>
+              <ThreeSixtyIcon color="disabled" />
+              <ListItemText sx={{ pl: 1 }} primary="Position" color="disabled"  />
+            </ListItemButton>
+            </Tooltip>
+          </ListItem>
+          <ListItem key="Force"  >
+          <Tooltip title="Page not visible until both sides of nordic walking pole devices are connected via bluetooth">
+            <ListItemButton>
+              <FitnessCenterIcon color="disabled" />
+              <ListItemText sx={{ pl: 1 }} primary="Force" color="disabled" />
+            </ListItemButton>
+            </Tooltip>
+          </ListItem>
+        {/* {['DashBoard', 'Heart Rate', 'Position', 'Force' ].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {index === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
-        ))}
+        ))} */}
       </List>
     </div>
   );
@@ -90,9 +148,69 @@ function SideBar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Nordic Walking
+          {/* <Typography variant="h6" noWrap component="div">
+            
+          </Typography> */}
+          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+          Nordic Walking
           </Typography>
+          <div>
+
+          <Tooltip title="Connect to the left side of the walking pole, will only scan for comptible devices">
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={connectLeftSideBluetooth}
+                color="inherit"
+              >
+          <Typography variant="subtitle1" >
+                          Connect Left Pole
+          </Typography>
+                <BluetoothSearchingIcon/>
+                
+              </IconButton>
+              </Tooltip>
+
+              {/* <Tooltip title="Connect to the right side of the walking pole, will only scan for comptible devices"></Tooltip> */}
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={connectRightSideBluetooth}
+                color="inherit"
+              >
+              <Typography variant="subtitle1" >
+                          Connect Right Pole
+          </Typography>
+          <BluetoothSearchingIcon  />
+          
+              </IconButton>
+              {/* </Tooltip> */}
+              {/* <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+              </Menu> */}
+            </div>
+
+
+
         </Toolbar>
       </AppBar>
       <Box
