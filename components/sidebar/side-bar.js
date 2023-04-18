@@ -18,13 +18,14 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import BluetoothSearchingIcon from '@mui/icons-material/BluetoothSearching';
-import { Menu, MenuItem, Tooltip } from '@mui/material';
+import { Container, Menu, MenuItem, Tooltip } from '@mui/material';
 import ComputerIcon from '@mui/icons-material/Computer';
 // import Tooltip from '@mui/material/Tooltip';
 import NordicWalkingIcon from '@mui/icons-material/NordicWalking';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ThreeSixtyIcon from '@mui/icons-material/ThreeSixty';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import Image from 'next/image';
 const drawerWidth = 240;
 const topBarHeight=80;
 const theme = createTheme({
@@ -89,8 +90,49 @@ export default function SideBar(props) {
     <div>
       {/* MY LOGO
       {currentUser.login} */}
+
+          <Box sx={{ p: 3 }}
+
+          >
+            {/* <NextLink
+              href="/"
+              passHref
+            >
+              <a>
+                <Logo
+                  sx={{
+                    height: 42,
+                    width: 42
+                  }}
+                />
+
+              </a>
+
+            </NextLink> */}
+            <Container
+
+                   >
+                                <Container
+                   alignItems="center"
+                   justifyContent="center"
+                   >
+            <Image
+            src="/logo_color.png"
+            alt="Logo"
+            />
+            </Container>
+            </Container>
+            
+            {/* <Typography
+            color="textSecondary"
+            gutterBottom
+            variant="overline"
+          >
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nordic Walking
+          </Typography> */}
+          </Box>
+
       
-      <Toolbar />
       <List>
       <ListItem key="DashBoard" >
       <Tooltip title="Page not visible until both sides of nordic walking pole devices are connected via bluetooth">
