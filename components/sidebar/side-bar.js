@@ -18,7 +18,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import BluetoothSearchingIcon from '@mui/icons-material/BluetoothSearching';
-import { Container, Menu, MenuItem, Tooltip } from '@mui/material';
+import { Container, Menu, MenuItem, Tooltip, Button  } from '@mui/material';
 import ComputerIcon from '@mui/icons-material/Computer';
 // import Tooltip from '@mui/material/Tooltip';
 import NordicWalkingIcon from '@mui/icons-material/NordicWalking';
@@ -136,16 +136,24 @@ export default function SideBar(props) {
       <List>
       <ListItem key="DashBoard" >
       <Tooltip title="Page not visible until both sides of nordic walking pole devices are connected via bluetooth">
-            <ListItemButton>
+            <ListItemButton   sx={{
+    ":hover": {
+      bgcolor: "#1f3a5a"
+    }
+  }}>
               <NordicWalkingIcon color="disabled" />
               <ListItemText sx={{ pl: 1 }} primary="DashBoard" color="disabled"  />
-            </ListItemButton>
+            </ListItemButton >
             </Tooltip>
           </ListItem>
           <ListItem key="Heart" >
           <Tooltip title="Page not visible until both sides of nordic walking pole devices are connected via bluetooth">
 
-            <ListItemButton>
+            <ListItemButton sx={{
+    ":hover": {
+      bgcolor: "#1f3a5a"
+    }
+  }}>
               <FavoriteBorderIcon color="disabled" />
               <ListItemText sx={{ pl: 1 }} primary="Heart" color="disabled" />
             </ListItemButton>
@@ -154,7 +162,11 @@ export default function SideBar(props) {
           <ListItem key="Position" >
           <Tooltip title="Page not visible until both sides of nordic walking pole devices are connected via bluetooth">
 
-            <ListItemButton>
+            <ListItemButton sx={{
+    ":hover": {
+      bgcolor: "#1f3a5a"
+    }
+  }}>
               <ThreeSixtyIcon color="disabled" />
               <ListItemText sx={{ pl: 1 }} primary="Position" color="disabled"  />
             </ListItemButton>
@@ -162,12 +174,17 @@ export default function SideBar(props) {
           </ListItem>
           <ListItem key="Force"  >
           <Tooltip title="Page not visible until both sides of nordic walking pole devices are connected via bluetooth">
-            <ListItemButton>
+            <ListItemButton sx={{
+    ":hover": {
+      bgcolor: "#1f3a5a"
+    }
+  }}>
               <FitnessCenterIcon color="disabled" />
               <ListItemText sx={{ pl: 1 }} primary="Force" color="disabled" />
             </ListItemButton>
             </Tooltip>
           </ListItem>
+          
         {/* {['DashBoard', 'Heart Rate', 'Position', 'Force' ].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
@@ -212,8 +229,21 @@ export default function SideBar(props) {
           Nordic Walking
           </Typography>
           <div>
-
           <Tooltip title="Connect to the left side of the walking pole, will only scan for comptible devices">
+
+          <Button onClick={connectLeftSideBluetooth} sx={{color:"white",textTransform: "none",":hover": {
+      bgcolor: "#182e46"
+    } }}>          <Typography variant="subtitle1" >
+                          
+          Connect Left Pole</Typography><BluetoothSearchingIcon  /></Button></Tooltip>
+          <Tooltip title="Connect to the left side of the walking pole, will only scan for comptible devices">
+
+<Button onClick={connectLeftSideBluetooth} sx={{color:"white",textTransform: "none",":hover": {
+bgcolor: "#182e46"
+} }}>          <Typography variant="subtitle1" >
+                
+Connect Left Pole</Typography><BluetoothSearchingIcon  /></Button></Tooltip>
+          {/* <Tooltip title="Connect to the left side of the walking pole, will only scan for comptible devices">
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -221,6 +251,11 @@ export default function SideBar(props) {
                 aria-haspopup="true"
                 onClick={connectLeftSideBluetooth}
                 color="inherit"
+                sx={{
+                  ":hover": {
+                    bgcolor: "white"
+                  }
+                }}
               >
           <Typography variant="subtitle1" >
                           Connect Left Pole
@@ -230,7 +265,7 @@ export default function SideBar(props) {
               </IconButton>
               </Tooltip>
 
-              {/* <Tooltip title="Connect to the right side of the walking pole, will only scan for comptible devices"></Tooltip> */}
+              <Tooltip title="Connect to the right side of the walking pole, will only scan for comptible devices"></Tooltip>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -244,7 +279,7 @@ export default function SideBar(props) {
           </Typography>
           <BluetoothSearchingIcon  />
           
-              </IconButton>
+              </IconButton> */}
               {/* </Tooltip> */}
               {/* <Menu
                 id="menu-appbar"
