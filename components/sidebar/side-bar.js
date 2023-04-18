@@ -43,7 +43,7 @@ const theme = createTheme({
   },
 });
 
-function SideBar(props) {
+export default function SideBar(props) {
   const { window, children,Component, pageProps, currentUser, } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -52,12 +52,27 @@ function SideBar(props) {
   };
 
 
-  const connectLeftSideBluetooth = async () =>{
-    await navigator.bluetooth.requestDevice({
-      filters:[{
-        services:['cf69d05e-dd02-11ed-afa1-0242ac120002' ]
-      } ]
-    })
+  // const connectLeftSideBluetooth = async () =>{
+  //   await navigator.bluetooth.requestDevice({
+  //     filters:[{
+  //       services:['cf69d05e-dd02-11ed-afa1-0242ac120002' ]
+  //     } ]
+  //   })
+  // }
+
+  async function connectLeftSideBluetooth() {
+
+    // const device = await navigator.bluetooth.requestDevice({ acceptAllDevices:true})
+    const device = await navigator.bluetooth.requestDevice({filters: [{services: ['51ad213f-e568-4e35-84e4-67af89c79ef0']}]})
+    const server = await device.gatt.connect()
+    const service = await server.getPrimaryService('51ad213f-e568-4e35-84e4-67af89c79ef0')
+    const char = await service.getCharacteristic('528ff74b-fdb8-444c-9c64-3dd5da4135ae')
+    await char.addEventListener('characteristicvaluechanged', handleChangedValue)
+    await char.startNotifications()
+    console.log("the name of the device is: "+device) //BluetoothDevice
+    console.log('Getting server... '+server) //BluetoothRemoteGATTServer
+    console.log('Getting service... '+service) //BluetoothRemoteGATTService
+    console.log('Getting char... '+char) //BluetoothRemoteGATTCharacteristic
   }
   const connectRightSideBluetooth = async () =>{
     await navigator.bluetooth.requestDevice({
@@ -259,4 +274,4 @@ function SideBar(props) {
 
 
 
-export default SideBar;
+// export default SideBar;
